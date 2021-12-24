@@ -34,7 +34,7 @@ jobs:
       uses: Burnett01/rsync-deployments@5.1
       with: 
         switches: -azv
-        path: .
+        path: /home/runner
         remote_path: /root/github
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: root
