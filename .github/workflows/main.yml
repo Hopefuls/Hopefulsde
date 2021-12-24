@@ -30,11 +30,14 @@ jobs:
     - name: install rsync if not present
       run: sudo apt-get install -y rsync
       
+    - name: test
+      run: ls -laR /home
+      
     - name: Rsync Deployments Action
       uses: Burnett01/rsync-deployments@5.1
       with: 
         switches: -azv
-        path: /home/runner
+        path: /home/runner/
         remote_path: /root/github
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: root
