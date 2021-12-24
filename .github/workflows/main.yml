@@ -38,15 +38,8 @@ jobs:
     - name: test
       run: ls -la ${{ github.workspace }}  
       
-    - name: Rsync Deployments Action
-      uses: Burnett01/rsync-deployments@5.1
-      with: 
-        switches: -azv
-        path: ${{ github.workspace }}  
-        remote_path: /root/github
-        remote_host: ${{ secrets.SSH_HOST }}
-        remote_user: root
-        remote_key: ${{ secrets.SSH_SECRET }}
+    - name: Deploy with rsync
+      run: rsync -avz ${{ github.workspace }} root@${{ secrets.SSH_HOST }}:/root/github
         
       
 
