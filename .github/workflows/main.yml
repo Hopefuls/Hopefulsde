@@ -31,13 +31,13 @@ jobs:
       run: sudo apt-get install -y rsync
       
     - name: test
-      run: ls -la $GITHUB_WORKSPACE
+      run: ls -la ${{ github.workspace }}  
       
     - name: Rsync Deployments Action
       uses: Burnett01/rsync-deployments@5.1
       with: 
         switches: -azv
-        path: $GITHUB_WORKSPACE
+        path: ${{ github.workspace }}  
         remote_path: /root/github
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: root
