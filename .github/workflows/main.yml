@@ -46,7 +46,7 @@ jobs:
     - name: Discord Webhook Action
       uses: tsickert/discord-webhook@v4.0.0  
       with:
-        embed-title: Test
+        embed-title: Deployment [${{ github.run_id }}]
         embed-description: Test
         webhook-url: ${{ secrets.WEBHOOK_URL }}
 
