@@ -23,23 +23,30 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with: 
-        key: ${{ secrets.SSH_SECRET }}
-        known_hosts: 'yourmom'
-    - name: add known hosts
-      run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-    - name: install rsync if not present
-      run: sudo apt-get install -y rsync
-    - name: echo workspace
-      run: echo ${{ github.workspace }}
+  #  - name: Install SSH Key
+ #     uses: shimataro/ssh-key-action@v2
+ #     with: 
+   #     key: ${{ secrets.SSH_SECRET }}
+  #      known_hosts: 'yourmom'
+ #   - name: add known hosts
+    
+    #
+  ###    run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+ #   - name: install rsync if not present
+  #    run: sudo apt-get install -y rsync
+  #  - name: echo workspace
+   #   run: echo ${{ github.workspace }}
       
-    - name: test
-      run: ls -la ${{ github.workspace }}  
+  #  - name: test
+ #     run: ls -la ${{ github.workspace }}  
       
-    - name: Deploy with rsync
-      run: rsync -avz ${{ github.workspace }} root@${{ secrets.SSH_HOST }}:/root/github
+ #   - name: Deploy with rsync
+  #    run: rsync -avz ${{ github.workspace }} root@${{ secrets.SSH_HOST }}:/root/github
         
-      
+    - name: Discord Webhook Action
+      uses: tsickert/discord-webhook@v4.0.0  
+      with:
+        embed-title: Test
+        embed-description: Test
+        webhook-url: ${{ secrets.WEBHOOK_URL }}
 
